@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="bg-white w-full text-black p-3 flex">
+      <header className="bg-white w-full text-black p-3 flex">
         <nav className="md:max-w-[1200px] md:m-auto flex relative justify-between w-full  md:border-b-[1px] md:border-b-grayish_blue">
           <ul className="flex gap-4 md:gap-10 relative items-center">
             <li className="z-50 relative block md:hidden">
@@ -54,7 +54,7 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-      </div>
+      </header>
       {isOpen ? (
         <div className="w-full top-0 right-0 h-screen bg-black/60 z-0 absolute">
           <div className="relative bg-white w-2/3 h-screen z-0 text-black pt-20 flex">
