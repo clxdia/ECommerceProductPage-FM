@@ -5,24 +5,23 @@ import pfp from "../../public/images/image-avatar.png";
 import Image from "../../node_modules/next/image";
 
 const Header = () => {
-  const [isOpen, setOpen] = useState();
+  const [isOpen, setOpen] = useState(false);
 
   return (
     <>
-      <header className="bg-white w-full text-black p-3 flex">
-        <nav className="md:max-w-[1200px] md:m-auto flex relative justify-between w-full  md:border-b-[1px] md:border-b-grayish_blue">
-          <ul className="flex gap-4 md:gap-10 relative items-center">
-            <li className="z-50 relative block md:hidden">
+      <header className="bg-white w-full md:p-0 p-3 text-black flex fixed top-0 z-[1]">
+        <nav className="md:max-w-[1200px] w-[95%] md:m-auto flex relative justify-between md:border-b-[1px] md:border-b-grayish_blue">
+          <ul className="flex gap-4 md:gap-10 items-center">
+            <li className="absolute top-0 z-[4] bg-white block md:hidden">
               <Hamburger
                 size={20}
                 toggled={isOpen}
                 toggle={setOpen}
                 label="Show menu"
                 color="#000"
-                className="z-50 relative top-0 bottom-0"
               />
             </li>
-            <li className="relative text-4xl font-bold">sneakers</li>
+            <li className="ml-14 md:ml-0 text-4xl font-bold">sneakers</li>
             <li className="text-dark_grayish_blue py-10 border-b-[2px] border-b-white hover:border-b-[2px] hover:border-b-orange md:block hidden cursor-pointer">
               Collections
             </li>
@@ -54,24 +53,24 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-      </header>
-      {isOpen ? (
-        <div className="w-full top-0 right-0 h-screen bg-black/60 z-0 absolute">
-          <div className="relative bg-white w-2/3 h-screen z-0 text-black pt-20 flex">
-            <nav className="">
-              <ul className="font-black">
-                <li className="px-6 py-2 ">Collections</li>
-                <li className="px-6 py-2">Men</li>
-                <li className="px-6 py-2">Women</li>
-                <li className="px-6 py-2">About</li>
-                <li className="px-6 py-2">Contact</li>
-              </ul>
-            </nav>
+        {isOpen ? (
+          <div className="w-full md:hidden top-0 right-0 h-screen bg-black/60 z-[2] fixed">
+            <div className="relative bg-white w-2/3 h-screen text-black pt-20 flex">
+              <nav className="">
+                <ul className="font-black">
+                  <li className="px-6 py-2 ">Collections</li>
+                  <li className="px-6 py-2">Men</li>
+                  <li className="px-6 py-2">Women</li>
+                  <li className="px-6 py-2">About</li>
+                  <li className="px-6 py-2">Contact</li>
+                </ul>
+              </nav>
+            </div>
           </div>
-        </div>
-      ) : (
-        <></>
-      )}
+        ) : (
+          <></>
+        )}
+      </header>
     </>
   );
 };
