@@ -3,7 +3,7 @@
 import { createContext, useState } from "react";
 import { useSelector } from "react-redux";
 
-export const CartContext = createContext();
+export const CartContext = createContext(null);
 
 export const CartProvider = ({ children }) => {
     const products = useSelector((state) => state.cart.products);
