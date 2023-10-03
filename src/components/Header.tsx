@@ -5,15 +5,25 @@ import pfp from "../../public/images/image-avatar.png";
 import Image from "../../node_modules/next/image";
 import Cart from "./Cart";
 import { CartContext } from "../app/CartContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
     const [isOpen, setOpen] = useState(false);
 
     const { cartOpen } = useContext(CartContext);
-    const { handleMouseEnter } = useContext(CartContext);
-    const { notif } = useContext(CartContext);
 
-    console.log(notif);
+    const { handleMouseEnter } = useContext(CartContext);
+
+    const products = useSelector((state) => state.cart.products);
+
+    const [qnt, setQnt] = useState();
+
+    const quantityBadge = () => {
+        let quantity = 0;
+        products.forEach((item) => (quantity += item.quantity));
+
+        return quantity;
+    };
 
     return (
         <>
@@ -65,11 +75,10 @@ const Header = () => {
                                     fill-rule="nonzero"
                                 />
                             </svg>
-                            {notif && (
-                                <div className="bg-redish w-4 h-4 absolute bottom-3 px-[0.6rem] bg-orange right-[-5px] rounded-full flex justify-center text-white text-[10px]">
-                                    {notif}
-                                </div>
-                            )}
+
+                            <div className="bg-redish w-4 h-4 absolute bottom-3 px-[0.6rem] bg-orange right-[-5px] rounded-full flex justify-center text-white text-[10px]">
+                                {quantityBadge()}
+                            </div>
                         </li>
                         <li className="w-12 rounded-full p-1 border-[2px] border-white hover:border-orange cursor-pointer">
                             <Image
