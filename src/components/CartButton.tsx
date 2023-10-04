@@ -1,5 +1,6 @@
 "use client";
 
+import { StaticImageData } from "next/image";
 import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { CartContext } from "../app/CartContext";
@@ -13,7 +14,7 @@ interface Props {
 interface Item {
     id: number;
     title: string;
-    images: { pic1: string };
+    images: { pic1: StaticImageData };
     current_price: number;
 }
 
