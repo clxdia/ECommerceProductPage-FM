@@ -10,17 +10,17 @@ import { useSelector } from "react-redux";
 const Header = () => {
     const [isOpen, setOpen] = useState(false);
 
-    const { cartOpen } = useContext(CartContext);
+    const { cartOpen } = useContext(CartContext) || { cartOpen: () => {} };
 
-    const { handleMouseEnter } = useContext(CartContext);
+    const { handleMouseEnter } = useContext(CartContext) || {
+        handleMouseEnter: () => {},
+    };
 
     const products = useSelector((state) => state.cart.products);
 
-    const [qnt, setQnt] = useState();
-
     const quantityBadge = () => {
         let quantity = 0;
-        products.forEach((item) => (quantity += item.quantity));
+        products.forEach((item: any) => (quantity += item.quantity));
 
         return quantity;
     };
@@ -115,6 +115,3 @@ const Header = () => {
 };
 
 export default Header;
-function quantityBadge() {
-    throw new Error("Function not implemented.");
-}

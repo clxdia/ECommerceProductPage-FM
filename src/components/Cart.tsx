@@ -7,22 +7,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { CartContext } from "../app/CartContext";
 import { removeItem, resetCart } from "../redux/features/cartSlice";
 
-const Cart = ({ open }) => {
+interface Props {
+    open: boolean;
+}
+
+const Cart = ({ open }: Props) => {
     const products = useSelector((state) => state.cart.products);
     const dispatch = useDispatch();
-    const { handleMouseLeave } = useContext(CartContext);
+    const { handleMouseLeave } = useContext(CartContext) || {
+        handleMouseLeave: () => {},
+    };
 
     const totalPrice = () => {
         let total = 0;
-        products.forEach((item) => (total += item.quantity * 125));
+        products.forEach((item: any) => (total += item.quantity * 125));
         return total.toFixed(2);
-    };
-
-    const quantityBadge = () => {
-        let qnt = 0;
-        products.forEach((item) => (qnt += item.quantity));
-        console.log("hellooo:" + qnt);
-        return qnt;
     };
 
     if (products.length === 0) {
@@ -56,7 +55,7 @@ const Cart = ({ open }) => {
                     </h1>
                 </div>
                 <div className="max-h-[50vh] overflow-y-scroll p-6">
-                    {products?.map((item) => (
+                    {products?.map((item: any) => (
                         <div key={item.id} className="flex justify-between">
                             <Image
                                 src={item.image}

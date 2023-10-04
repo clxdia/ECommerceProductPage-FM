@@ -1,12 +1,21 @@
 "use client";
 
 import { createContext, useState } from "react";
-import { useSelector } from "react-redux";
 
-export const CartContext = createContext(null);
+interface Props {
+    children: any;
+}
 
-export const CartProvider = ({ children }) => {
-    const products = useSelector((state) => state.cart.products);
+interface CartContextValue {
+    cartOpen: boolean;
+    toggleCart: () => void;
+    handleMouseEnter: () => void;
+    handleMouseLeave: () => void;
+}
+
+export const CartContext = createContext<CartContextValue | null>(null);
+
+export const CartProvider = ({ children }: Props) => {
     const [cartOpen, setCartOpen] = useState(false);
 
     const toggleCart = () => {
@@ -16,14 +25,6 @@ export const CartProvider = ({ children }) => {
             setCartOpen(cartOpen);
         }, 3000);
     };
-
-    // const removeCartNotif = () => {
-    //     if (notif === 1) {
-    //         setNotif(false);
-    //     } else {
-    //         setNotif(notif - 1);
-    //     }
-    // };
 
     const handleMouseEnter = () => {
         setCartOpen(true);
@@ -38,8 +39,6 @@ export const CartProvider = ({ children }) => {
             value={{
                 cartOpen,
                 toggleCart,
-                // notif,
-                // removeCartNotif,
                 handleMouseEnter,
                 handleMouseLeave,
             }}

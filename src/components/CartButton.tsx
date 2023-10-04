@@ -5,10 +5,22 @@ import { useDispatch } from "react-redux";
 import { CartContext } from "../app/CartContext";
 import { addToCart } from "../redux/features/cartSlice";
 
-const CartButton = ({ item, quantity }) => {
+interface Props {
+    item: Item;
+    quantity: number;
+}
+
+interface Item {
+    id: number;
+    title: string;
+    images: { pic1: string };
+    current_price: number;
+}
+
+const CartButton = ({ item, quantity }: Props) => {
     const dispatch = useDispatch();
 
-    const { toggleCart } = useContext(CartContext);
+    const { toggleCart } = useContext(CartContext) || { toggleCart: () => {} };
 
     const handleClick = () => {
         dispatch(

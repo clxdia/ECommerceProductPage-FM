@@ -31,10 +31,6 @@ export default function Home() {
         setActiveIndex(index);
     };
 
-    const handleDecrement = () => {
-        setCount((prevCount) => (prevCount === 1 ? 1 : prevCount - 1));
-    };
-
     const handleNextImage = () => {
         setActiveIndex((prevIndex) => (prevIndex + 1) % pics.length);
     };
